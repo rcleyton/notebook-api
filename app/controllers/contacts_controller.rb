@@ -4,8 +4,10 @@ class ContactsController < ApplicationController
   # GET /contacts
   def index
     @contacts = Contact.all
-
     render json: @contacts
+
+    # render json: @contacts.map { |contact| contact.attributes.merge({ author: "Cleyton" }) }
+    # render json: @contacts, only: [:name, :email] // except é o contrario de only
   end
 
   # GET /contacts/1
