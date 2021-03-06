@@ -1,5 +1,12 @@
 class Contact < ApplicationRecord
   belongs_to :kind  #optional: true
+  has_many :phones
+
+  def as_json(options={})
+    hash = super(options)
+    hash[:birthdate] = (I18n.l(self.birthdate) unless self.birthdate.blank?)
+    hash
+  end
 
   # def author
   #   "Cleyton Silva"
